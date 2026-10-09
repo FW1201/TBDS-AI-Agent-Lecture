@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "skill",
+    "language",
+    "context",
+    "sources",
+    "content"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "skill": {
+      "const": "tw-edu-meeting-facilitator"
+    },
+    "language": {
+      "const": "zh-TW"
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "grade",
+        "topic"
+      ],
+      "properties": {
+        "subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "grade": {
+          "type": "string",
+          "minLength": 1
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "status"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "verified",
+              "user_provided",
+              "pending"
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "meeting_type",
+        "date",
+        "duration_minutes",
+        "participants",
+        "agenda",
+        "actions",
+        "record_status"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "meeting_type": {
+          "enum": [
+            "校務會議",
+            "行政會議",
+            "課程發展委員會",
+            "領域教學研究會",
+            "學生事務相關會議",
+            "班親會",
+            "其他"
+          ]
+        },
+        "date": {
+          "type": "string",
+          "minLength": 1
+        },
+        "duration_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "participants": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "agenda": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "topic",
+              "minutes",
+              "owner",
+              "kind"
+            ],
+            "properties": {
+              "topic": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minutes": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "owner": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kind": {
+                "enum": [
+                  "報告事項",
+                  "討論事項",
+                  "臨時動議",
+                  "其他"
+                ]
+              }
+            }
+          }
+        },
+        "actions": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "action",
+              "owner",
+              "due"
+            ],
+            "properties": {
+              "action": {
+                "type": "string",
+                "minLength": 1
+              },
+              "owner": {
+                "type": "string",
+                "minLength": 1
+              },
+              "due": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "record_status": {
+          "enum": [
+            "議程草案",
+            "紀錄草稿",
+            "已確認紀錄"
+          ]
+        },
+        "reports": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "unit",
+              "summary"
+            ],
+            "properties": {
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              },
+              "summary": {
+                "type": "string",
+                "minLength": 1
+              },
+              "decision": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "discussions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "case_no",
+              "proposer",
+              "cause",
+              "explanation",
+              "resolution",
+              "status"
+            ],
+            "properties": {
+              "case_no": {
+                "type": "string",
+                "minLength": 1
+              },
+              "proposer": {
+                "type": "string",
+                "minLength": 1
+              },
+              "cause": {
+                "type": "string",
+                "minLength": 1
+              },
+              "explanation": {
+                "type": "array",
+                "minItems": 0,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "resolution": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "通過",
+                  "修正通過",
+                  "不通過",
+                  "保留",
+                  "待決議"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

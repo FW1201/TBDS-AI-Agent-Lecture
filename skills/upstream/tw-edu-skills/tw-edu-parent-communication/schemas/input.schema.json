@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "skill",
+    "language",
+    "context",
+    "sources",
+    "content"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "skill": {
+      "const": "tw-edu-parent-communication"
+    },
+    "language": {
+      "const": "zh-TW"
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "grade",
+        "topic"
+      ],
+      "properties": {
+        "subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "grade": {
+          "type": "string",
+          "minLength": 1
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "status"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "verified",
+              "user_provided",
+              "pending"
+            ]
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "audience",
+        "channel",
+        "sensitivity",
+        "recipients",
+        "purpose",
+        "facts",
+        "message",
+        "requested_action",
+        "contact_channel",
+        "send_status"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience": {
+          "enum": [
+            "全班家長",
+            "個別家長",
+            "家長代表"
+          ]
+        },
+        "channel": {
+          "enum": [
+            "公告",
+            "聯絡簿",
+            "私訊",
+            "電話",
+            "面談",
+            "書面通知",
+            "行政協調"
+          ]
+        },
+        "sensitivity": {
+          "enum": [
+            "一般",
+            "個別",
+            "敏感",
+            "正式程序"
+          ]
+        },
+        "recipients": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "facts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requested_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contact_channel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "send_status": {
+          "enum": [
+            "草稿",
+            "待主管確認",
+            "已發送"
+          ]
+        },
+        "concerns": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "pending": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "meeting_plan": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "date",
+            "agenda",
+            "roles"
+          ],
+          "properties": {
+            "date": {
+              "type": "string",
+              "minLength": 1
+            },
+            "agenda": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "roles": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

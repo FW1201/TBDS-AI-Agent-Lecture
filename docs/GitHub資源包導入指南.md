@@ -2,11 +2,11 @@
 
 ## 目的
 
-將講師提供的 GitHub skills/context 資源下載到課程 workspace，檢查來源和內容後，讓 Codex Agent 在案例專案中依流程編輯文件、簡報大綱和試算表。課程資料目前未指定上游資源庫 URL；下方命令中的 `<RESOURCE_REPO_URL>` 和 `<RESOURCE_COMMIT>` 是待講師填入的佔位符，不可直接當成實際網址或版本。
+將講師提供的 GitHub skills/context 資源下載到課程 workspace，檢查來源和內容後，讓 Codex Agent 在案例專案中依流程編輯文件、簡報大綱和試算表。本課程已將 [FW1201/tw-edu-skills](https://github.com/FW1201/tw-edu-skills) v5.0.1（commit `420afdf58d913b6d240c4a6b41ef55bb7d0a66ec`）完整複製到 `skills/upstream/tw-edu-skills/`，版本與 MIT 授權資訊見 `resources/manifest.md`。以下流程可用於更新資源或匯入其他資源包。
 
 ## 匯入步驟
 
-1. 確認 repo URL、可存取性、授權、適用對象及是否允許課堂重分發。
+1. 確認 repo URL、可存取性、授權、適用對象及是否允許課堂重分發；本課上游副本依原 repo 的 MIT 授權保留 LICENSE。
 2. 以 HTTPS clone 或下載 ZIP 取得資源，固定到講師確認的 commit/tag；不要把 GitHub token 寫進命令、文件或 shell history。
 3. 將原始副本放入 `resources/inbox/<resource-name>/`，記錄來源、commit、日期和下載人員角色。
 4. 盤點 README、SKILL.md、context 文件、範本、程式和外部依賴；先閱讀，再決定哪些內容適用。
@@ -28,7 +28,7 @@
 
 | 名稱 | 類型 | 上游 URL／路徑 | Commit／版本 | 授權 | 用途 | 依賴／網路 | 審閱狀態 |
 |---|---|---|---|---|---|---|---|
-| 待填 | skill/context | 待填 | 待填 | 待確認 | 待填 | 待填 | 未審閱 |
+| tw-edu-skills v5.0.1 | skills／課綱參考快照 | `https://github.com/FW1201/tw-edu-skills` | `420afdf58d913b6d240c4a6b41ef55bb7d0a66ec` | MIT | 台灣 K-12 教學與教育行政任務；選用對照見 `skills/README.md` | 部分 skill 有 Python 依賴；使用前檢查各 skill 文件，不預設執行 scripts | 已複製；課堂使用前按案例檢視 |
 
 ## GitHub 存取問題
 
